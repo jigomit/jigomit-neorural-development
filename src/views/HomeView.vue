@@ -3,11 +3,11 @@
     <div class="hero-aurora"></div>
     <div class="hero-grid">
       <div class="hero-copy" ref="copyRef">
-        <p class="eyebrow">Community Development</p>
-        <h1>Regenerative village futures designed with local wisdom and future tech.</h1>
+        <p class="eyebrow">Community-led Rural Development</p>
+        <h1>Community-led rural development initiatives for regenerative village futures.</h1>
         <p>
-          We orchestrate bold programs for infrastructure, livelihoods, and culture so that rural communities can thrive in harmony with
-          their lands.
+          We orchestrate bold, community-led rural development initiatives across infrastructure, livelihoods, and culture so that rural
+          communities can thrive in harmony with their lands.
         </p>
         <div class="hero-actions">
           <RouterLink :to="{ name: 'initiatives' }" class="primary">Explore Programs</RouterLink>

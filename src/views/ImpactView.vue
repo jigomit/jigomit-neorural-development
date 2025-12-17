@@ -3,10 +3,10 @@
     <div class="impact-hero" ref="heroRef">
       <div>
         <p class="eyebrow">Impact Numbers</p>
-        <h1>Every project is measured through climate, wellbeing, and prosperity signals.</h1>
+        <h1>Every community-led rural development initiative is measured through climate, wellbeing, and prosperity signals.</h1>
         <p>
-          We combine satellite analytics, citizen observatories, and regenerative finance dashboards to ensure the story of progress is
-          transparent and community-owned.
+          We combine satellite analytics, citizen observatories, and regenerative finance dashboards to ensure the story of community-led
+          rural development progress is transparent and community-owned.
         </p>
       </div>
       <div class="impact-counters">

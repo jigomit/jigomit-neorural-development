@@ -2,7 +2,11 @@
   <section class="page initiatives-view">
     <div class="page-heading" ref="headingRef">
       <p class="eyebrow">Key Initiatives</p>
-      <h1>Flagship transformations making villages resilient, tech-enabled, and dignified.</h1>
+      <h1>Flagship community-led rural development initiatives across villages.</h1>
+      <p>
+        From water security to digital commons, each initiative is co-designed with village institutions so community-led rural
+        development can scale sustainably.
+      </p>
     </div>
 
     <div class="initiative-gallery">

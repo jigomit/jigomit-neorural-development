@@ -2,10 +2,10 @@
   <section class="page about-view">
     <div class="page-heading" ref="headingRef">
       <p class="eyebrow">About</p>
-      <h1>We are village futurists building circular, climate-positive ecosystems.</h1>
+      <h1>We are village futurists powering community-led rural development ecosystems.</h1>
       <p>
-        Our teams embed with councils, cooperatives, and youth leaders to map assets, co-create regenerative masterplans, and bring the
-        best of design, finance, and digital infrastructure to rural regions.
+        Our teams embed with councils, cooperatives, and youth leaders to map assets, co-create regenerative masterplans, and run
+        long-term, community-led rural development programs that blend design, finance, and digital infrastructure.
       </p>
     </div>
 
