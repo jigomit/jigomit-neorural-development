@@ -34,6 +34,11 @@ body {
 img {
   max-width: 100%;
   display: block;
+  height: auto;
+}
+
+img[loading="lazy"] {
+  content-visibility: auto;
 }
 
 .site-shell {
@@ -51,6 +56,8 @@ img {
   mix-blend-mode: overlay;
   pointer-events: none;
   z-index: -1;
+  will-change: auto;
+  content-visibility: auto;
 }
 
 .site-header {
