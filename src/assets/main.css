@@ -14,6 +14,33 @@
   --radius-xl: 40px;
 }
 
+/* Performance: Optimize rendering */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Performance: GPU acceleration for transforms */
+.site-header,
+.site-footer,
+.page {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Performance: Optimize font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Performance: Reduce repaints on scroll */
+.site-header {
+  contain: layout style paint;
+}
+
 *,
 *::before,
 *::after {
@@ -1299,6 +1326,14 @@ main {
     text-align: left;
     display: block;
   }
+}
+
+.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 3rem;
 }
 
 @media (max-width: 900px) {

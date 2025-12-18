@@ -1,17 +1,16 @@
 <script setup>
-import { ref, watch } from 'vue';
-import { RouterLink, RouterView, useRoute } from 'vue-router';
+import { ref, watch, onMounted } from 'vue';
+import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router';
+import { useSEO } from '@/composables/useSEO';
+import { prefetchResource, debounce } from '@/composables/usePerformance';
+import LoadingSpinner from '@/components/LoadingSpinner.vue';
 
-// Optimized logo images
-import logoHeaderAvif1x from '@/assets/images/logo-optimized/logo-header.avif';
-import logoHeaderAvif2x from '@/assets/images/logo-optimized/logo-header-2x.avif';
-import logoHeaderWebp1x from '@/assets/images/logo-optimized/logo-header.webp';
-import logoHeaderWebp2x from '@/assets/images/logo-optimized/logo-header-2x.webp';
-import logoFooterAvif1x from '@/assets/images/logo-optimized/logo-footer.avif';
-import logoFooterAvif2x from '@/assets/images/logo-optimized/logo-footer-2x.avif';
-import logoFooterWebp1x from '@/assets/images/logo-optimized/logo-footer.webp';
-import logoFooterWebp2x from '@/assets/images/logo-optimized/logo-footer-2x.webp';
-import logoFallback from '@/assets/images/logo-optimized/logo-fallback.png';
+import logoSrc from '@/assets/images/logo.png';
+
+// Initialize SEO with structured data
+useSEO();
+
+const router = useRouter();
 
 const navLinks = [
   { label: 'Home', name: 'home' },
@@ -41,6 +40,28 @@ watch(
     isNavOpen.value = false;
   }
 );
+
+// Prefetch routes on link hover for faster navigation
+const handleLinkHover = debounce((routeName) => {
+  const route = router.resolve({ name: routeName });
+  if (route && route.matched && route.matched.length > 0) {
+    const component = route.matched[route.matched.length - 1].components?.default;
+    if (component && typeof component === 'function') {
+      // Prefetch the component
+      component();
+    }
+  }
+}, 100);
+
+onMounted(() => {
+  // Prefetch critical routes
+  const criticalRoutes = ['about', 'initiatives', 'contact'];
+  criticalRoutes.forEach((routeName) => {
+    setTimeout(() => {
+      handleLinkHover(routeName);
+    }, 2000); // Prefetch after 2 seconds
+  });
+});
 </script>
 
 <template>
@@ -48,23 +69,7 @@ watch(
     <div class="grain-bg"></div>
     <header class="site-header">
       <RouterLink to="/" class="logo">
-        <picture class="logo-mark">
-          <source
-            type="image/avif"
-            :srcset="`${logoHeaderAvif1x} 1x, ${logoHeaderAvif2x} 2x`"
-          />
-          <source
-            type="image/webp"
-            :srcset="`${logoHeaderWebp1x} 1x, ${logoHeaderWebp2x} 2x`"
-          />
-          <img
-            :src="logoHeaderWebp1x"
-            alt="Community Development logo"
-            width="50"
-            height="50"
-            loading="eager"
-          />
-        </picture>
+        <img :src="logoSrc" alt="Community Development logo" class="logo-mark" />
         <div class="logo-text">
           <span>NeoRural Development</span>
         </div>
@@ -91,6 +96,7 @@ watch(
           :to="{ name: link.name }"
           :class="['nav-link', { active: route.name === link.name }]"
           @click="closeNav"
+          @mouseenter="handleLinkHover(link.name)"
         >
           {{ link.label }}
         </RouterLink>
@@ -100,7 +106,7 @@ watch(
     <main>
       <RouterView v-slot="{ Component, route: currentRoute }">
         <Transition :name="currentRoute.meta.transition ?? 'page-slide'" mode="out-in" appear>
-          <component :is="Component" />
+          <component :is="Component" v-if="Component" />
         </Transition>
       </RouterView>
     </main>
@@ -109,23 +115,7 @@ watch(
       <div class="footer-glass">
         <div class="footer-grid">
           <div class="footer-col footer-brand">
-            <picture class="footer-logo">
-              <source
-                type="image/avif"
-                :srcset="`${logoFooterAvif1x} 1x, ${logoFooterAvif2x} 2x`"
-              />
-              <source
-                type="image/webp"
-                :srcset="`${logoFooterWebp1x} 1x, ${logoFooterWebp2x} 2x`"
-              />
-              <img
-                :src="logoFooterWebp1x"
-                alt="NeoRural Development logo"
-                width="124"
-                height="95"
-                loading="lazy"
-              />
-            </picture>
+            <img :src="logoSrc" alt="NeoRural Development logo" class="footer-logo" />
             <div class="footer-brand-text">
               <h3>NeoRural Development</h3>
               <p>Partners for rural transformation. Designing resilient, thriving villages with community-led innovation.</p>

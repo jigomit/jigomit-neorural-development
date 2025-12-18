@@ -25,11 +25,13 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 import { posts } from '@/data/posts';
 
 const route = useRoute();
+const BASE_URL = import.meta.env.VITE_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : 'https://neorural.dev');
+
 const post = computed(() => posts.find((p) => p.slug === route.params.slug));
 const paragraphs = computed(() => {
   if (!post.value) return [];
@@ -47,5 +49,58 @@ const formatDate = (dateStr) => {
   const year = d.getFullYear();
   return `${month} ${day}, ${year}`;
 };
+
+const injectArticleSchema = () => {
+  if (!post.value) return;
+
+  // Remove existing article schema
+  const existing = document.querySelector('script[data-schema="article"]');
+  if (existing) existing.remove();
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.value.title,
+    description: post.value.excerpt,
+    image: typeof post.value.image === 'string' ? post.value.image : `${BASE_URL}${post.value.image}`,
+    datePublished: post.value.date,
+    dateModified: post.value.date,
+    author: {
+      '@type': 'Organization',
+      name: 'NeoRural Development',
+      url: BASE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'NeoRural Development',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${BASE_URL}/blog/${post.value.slug}`,
+    },
+    keywords: 'community-led rural development, sustainable village transformation, water security solutions, participatory rural development, village development programs',
+  };
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.setAttribute('data-schema', 'article');
+  script.textContent = JSON.stringify(articleSchema);
+  document.head.appendChild(script);
+};
+
+onMounted(() => {
+  injectArticleSchema();
+});
+
+watch(
+  () => route.params.slug,
+  () => {
+    injectArticleSchema();
+  }
+);
 </script>
 

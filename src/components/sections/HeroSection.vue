@@ -2,23 +2,7 @@
   <section class="hero" id="hero">
     <div class="hero__content" ref="contentRef">
       <div class="hero__logo-chip">
-        <picture>
-          <source
-            type="image/avif"
-            :srcset="`${logoHeroAvif1x} 1x, ${logoHeroAvif2x} 2x`"
-          />
-          <source
-            type="image/webp"
-            :srcset="`${logoHeroWebp1x} 1x, ${logoHeroWebp2x} 2x`"
-          />
-          <img
-            :src="logoHeroWebp1x"
-            alt="Community Development logo"
-            width="64"
-            height="64"
-            loading="eager"
-          />
-        </picture>
+        <img :src="logoSrc" alt="Community Development logo" />
       </div>
       <p class="eyebrow">Community Development</p>
       <h1>Designing regenerative futures for villages across the globe.</h1>
@@ -51,11 +35,7 @@
 import { onMounted, ref } from 'vue';
 import HeroGlobe from '@/components/HeroGlobe.vue';
 import { animateIn } from '@/composables/useGsapAnimations';
-// Optimized logo images
-import logoHeroAvif1x from '@/assets/images/logo-optimized/logo-hero.avif';
-import logoHeroAvif2x from '@/assets/images/logo-optimized/logo-hero-2x.avif';
-import logoHeroWebp1x from '@/assets/images/logo-optimized/logo-hero.webp';
-import logoHeroWebp2x from '@/assets/images/logo-optimized/logo-hero-2x.webp';
+import logoSrc from '@/assets/images/logo.png';
 
 const contentRef = ref(null);
 const imageRef = ref(null);
