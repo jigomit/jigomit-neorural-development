@@ -2,7 +2,16 @@
 import { ref, watch } from 'vue';
 import { RouterLink, RouterView, useRoute } from 'vue-router';
 
-import logoSrc from '@/assets/images/logo.png';
+// Optimized logo images
+import logoHeaderAvif1x from '@/assets/images/logo-optimized/logo-header.avif';
+import logoHeaderAvif2x from '@/assets/images/logo-optimized/logo-header-2x.avif';
+import logoHeaderWebp1x from '@/assets/images/logo-optimized/logo-header.webp';
+import logoHeaderWebp2x from '@/assets/images/logo-optimized/logo-header-2x.webp';
+import logoFooterAvif1x from '@/assets/images/logo-optimized/logo-footer.avif';
+import logoFooterAvif2x from '@/assets/images/logo-optimized/logo-footer-2x.avif';
+import logoFooterWebp1x from '@/assets/images/logo-optimized/logo-footer.webp';
+import logoFooterWebp2x from '@/assets/images/logo-optimized/logo-footer-2x.webp';
+import logoFallback from '@/assets/images/logo-optimized/logo-fallback.png';
 
 const navLinks = [
   { label: 'Home', name: 'home' },
@@ -39,7 +48,23 @@ watch(
     <div class="grain-bg"></div>
     <header class="site-header">
       <RouterLink to="/" class="logo">
-        <img :src="logoSrc" alt="Community Development logo" class="logo-mark" />
+        <picture class="logo-mark">
+          <source
+            type="image/avif"
+            :srcset="`${logoHeaderAvif1x} 1x, ${logoHeaderAvif2x} 2x`"
+          />
+          <source
+            type="image/webp"
+            :srcset="`${logoHeaderWebp1x} 1x, ${logoHeaderWebp2x} 2x`"
+          />
+          <img
+            :src="logoHeaderWebp1x"
+            alt="Community Development logo"
+            width="50"
+            height="50"
+            loading="eager"
+          />
+        </picture>
         <div class="logo-text">
           <span>NeoRural Development</span>
         </div>
@@ -84,7 +109,23 @@ watch(
       <div class="footer-glass">
         <div class="footer-grid">
           <div class="footer-col footer-brand">
-            <img :src="logoSrc" alt="NeoRural Development logo" class="footer-logo" />
+            <picture class="footer-logo">
+              <source
+                type="image/avif"
+                :srcset="`${logoFooterAvif1x} 1x, ${logoFooterAvif2x} 2x`"
+              />
+              <source
+                type="image/webp"
+                :srcset="`${logoFooterWebp1x} 1x, ${logoFooterWebp2x} 2x`"
+              />
+              <img
+                :src="logoFooterWebp1x"
+                alt="NeoRural Development logo"
+                width="124"
+                height="95"
+                loading="lazy"
+              />
+            </picture>
             <div class="footer-brand-text">
               <h3>NeoRural Development</h3>
               <p>Partners for rural transformation. Designing resilient, thriving villages with community-led innovation.</p>

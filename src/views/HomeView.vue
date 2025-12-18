@@ -33,25 +33,11 @@
         </div>
         <div class="hero-photo-stack">
           <figure>
-            <img
-              src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80"
-              alt="Solar panels in rural community"
-              loading="lazy"
-              decoding="async"
-              width="900"
-              height="600"
-            />
+            <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80" alt="Solar panels in rural community" />
             <figcaption>Co-ops modernizing irrigation</figcaption>
           </figure>
           <figure>
-            <img
-              src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=900&q=80"
-              alt="Community meeting and collaboration"
-              loading="lazy"
-              decoding="async"
-              width="900"
-              height="600"
-            />
+            <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=900&q=80" alt="Community meeting and collaboration" />
             <figcaption>Artisan-led innovation labs</figcaption>
           </figure>
         </div>
