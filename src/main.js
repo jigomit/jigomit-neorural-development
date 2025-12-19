@@ -90,8 +90,15 @@ router.afterEach((to) => {
 const app = createApp(App);
 app.use(router);
 
-// Initialize SEO on app mount
-app.mount('#app');
+// Performance: Defer non-critical initialization
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    app.mount('#app');
+  });
+} else {
+  // DOM already loaded, mount immediately
+  app.mount('#app');
+}
 
 // Initialize SEO composable after mount
 router.isReady().then(() => {

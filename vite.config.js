@@ -97,6 +97,10 @@ export default defineConfig({
     modulePreload: {
       polyfill: false, // Don't polyfill for modern browsers
     },
+    // Performance: Reduce critical path by optimizing CSS
+    cssTarget: 'es2020', // Modern CSS target
+    // Performance: Optimize for mobile
+    assetsDir: 'assets',
   },
   optimizeDeps: {
     include: ['vue', 'vue-router'],

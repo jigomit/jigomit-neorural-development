@@ -1112,6 +1112,8 @@ main {
   font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   /* Performance: Reserve space before content loads */
   will-change: auto;
+  /* Performance: Prevent layout shifts from font loading */
+  font-display: swap;
 }
 
 .footer-glass {
@@ -1251,10 +1253,13 @@ main {
   /* Performance: Hide image until loaded to prevent shift */
   opacity: 0;
   transition: opacity 0.2s ease;
+  /* Performance: Prevent any layout recalculation */
+  will-change: opacity;
 }
 
 .footer-logo.loaded {
   opacity: 1;
+  will-change: auto;
 }
 
 .footer-heading {

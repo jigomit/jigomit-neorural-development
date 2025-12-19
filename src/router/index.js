@@ -151,8 +151,8 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition;
     }
-    // Smooth scroll to top for new routes
-    return { top: 0, behavior: 'smooth' };
+    // Performance: Use instant scroll instead of smooth to prevent forced reflows
+    return { top: 0, behavior: 'instant' };
   },
   routes,
 });
