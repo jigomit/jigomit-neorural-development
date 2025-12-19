@@ -1,0 +1,7 @@
+# Netlify Redirects Configuration
+# Redirect all routes to index.html for Vue Router SPA handling
+# The catch-all route in Vue Router will handle 404s
+
+# SPA fallback - all routes go to index.html
+/*    /index.html   200
+

@@ -142,6 +142,17 @@ const routes = [
       keywords: 'rural development NGO terms, village development program terms, community development terms of service',
     },
   },
+  // Catch-all route for 404 errors - must be last
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: () => import('../views/NotFoundView.vue'),
+    meta: {
+      transition: 'page-fade',
+      title: 'Page Not Found | NeoRural Development',
+      description: 'The page you are looking for could not be found. Return to NeoRural Development homepage or explore our community-led rural development initiatives.',
+    },
+  },
 ];
 
 const router = createRouter({
