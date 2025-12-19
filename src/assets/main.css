@@ -1092,15 +1092,26 @@ main {
   padding: 4rem 0 2rem;
   margin-top: 4rem;
   position: relative;
-  /* Performance: Reserve space to prevent layout shift */
-  min-height: 400px;
-  contain: layout style;
+  /* Performance: Reserve exact fixed height to prevent layout shift */
+  min-height: 500px;
+  height: auto;
+  contain: layout style paint;
+  /* Performance: Use content-visibility for better rendering */
+  content-visibility: auto;
+  /* Performance: Prevent font loading shifts - ensure fonts are loaded */
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  /* Performance: Reserve space before content loads */
+  will-change: auto;
 }
 
 .footer-glass {
   padding: 3rem 2.5rem;
-  /* Performance: Prevent layout shift */
-  min-height: 350px;
+  /* Performance: Prevent layout shift - reserve exact space */
+  min-height: 420px;
+  height: auto;
+  box-sizing: border-box;
+  /* Performance: Prevent content shifts */
+  contain: layout;
 }
 
 .footer-grid {
@@ -1108,6 +1119,11 @@ main {
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  /* Performance: Prevent layout shift */
+  min-height: 320px;
+  height: auto;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .footer-col {
@@ -1115,6 +1131,9 @@ main {
   flex-direction: column;
   gap: 0;
   flex: 0 0 auto;
+  /* Performance: Prevent layout shift */
+  min-height: 200px;
+  box-sizing: border-box;
 }
 
 .footer-brand {
@@ -1136,8 +1155,12 @@ main {
 
 .footer-brand-text {
   margin-top: 1rem;
-  /* Performance: Reserve space to prevent layout shift */
-  min-height: 80px;
+  /* Performance: Reserve exact space to prevent layout shift */
+  min-height: 120px;
+  height: auto;
+  box-sizing: border-box;
+  /* Performance: Prevent font loading shifts */
+  line-height: 1.6;
 }
 
 .footer-brand-text h3 {
@@ -1145,7 +1168,15 @@ main {
   color: var(--text);
   font-size: 1.25rem;
   font-weight: 600;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  /* Performance: Reserve exact space before font loads */
+  min-height: 1.75em;
+  line-height: 1.4;
+  box-sizing: border-box;
+  /* Performance: Prevent font swap shifts */
+  font-display: swap;
+  /* Performance: Use fallback font metrics */
+  font-synthesis: none;
 }
 
 .footer-brand-text p {
@@ -1153,6 +1184,9 @@ main {
   line-height: 1.6;
   margin: 0;
   font-size: 0.9rem;
+  /* Performance: Reserve exact space to prevent layout shift */
+  min-height: 2.8em;
+  box-sizing: border-box;
 }
 
 .footer-logo {
@@ -1173,6 +1207,10 @@ main {
   color: var(--accent);
   margin: 0 0 1rem;
   padding-bottom: 0.5rem;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 1.2em;
+  line-height: 1.2;
+  box-sizing: border-box;
 }
 
 .footer-col h4 {
@@ -1183,18 +1221,27 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 150px;
+  box-sizing: border-box;
 }
 
 .footer-contact-info {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 60px;
+  box-sizing: border-box;
 }
 
 .footer-social-links {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 80px;
+  box-sizing: border-box;
 }
 
 .footer-link {
@@ -1206,6 +1253,10 @@ main {
   font-size: 0.9rem;
   transition: all 0.25s ease;
   display: inline-block;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 1.5em;
+  line-height: 1.5;
+  box-sizing: border-box;
 }
 
 .footer-link:hover {
@@ -1246,6 +1297,9 @@ main {
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  /* Performance: Reserve exact space to prevent layout shift */
+  min-height: 60px;
+  box-sizing: border-box;
 }
 
 .footer-copyright {
@@ -1253,6 +1307,10 @@ main {
   font-size: 0.875rem;
   font-weight: 500;
   margin: 0;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 1.5em;
+  line-height: 1.5;
+  box-sizing: border-box;
 }
 
 .footer-legal {
@@ -1301,7 +1359,15 @@ main {
 @media (max-width: 720px) {
   .footer-glass {
     padding: 2rem 1.5rem;
-    min-height: 300px;
+    height: 350px;
+  }
+  
+  .site-footer {
+    height: 400px;
+  }
+  
+  .footer-grid {
+    height: 250px;
   }
 
   .footer-grid {

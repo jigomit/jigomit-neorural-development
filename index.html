@@ -136,9 +136,21 @@
       .logo-text{display:flex;flex-direction:column;line-height:1.2;min-height:1.2em;font-size:1rem;font-weight:700}
       .page{padding:3.5rem 0 0;min-height:calc(100vh - 120px);transform:translateZ(0)}
       img{max-width:100%;display:block;height:auto}
-      /* Performance: Reserve space for footer to prevent layout shift */
-      .site-footer{padding:4rem 0 2rem;margin-top:4rem;position:relative;min-height:400px;contain:layout style}
-      .footer-brand-text{margin-top:1rem;min-height:80px}
+      /* Performance: Reserve exact space for footer to prevent layout shift */
+      .site-footer{padding:4rem 0 2rem;margin-top:4rem;position:relative;min-height:500px;contain:layout style paint;content-visibility:auto}
+      .footer-glass{padding:3rem 2.5rem;min-height:420px;contain:layout;box-sizing:border-box}
+      .footer-grid{display:flex;justify-content:space-between;align-items:flex-start;width:100%;min-height:320px;flex-wrap:wrap;box-sizing:border-box}
+      .footer-brand-text{margin-top:1rem;min-height:120px;line-height:1.6;box-sizing:border-box}
+      .footer-brand-text h3{margin:0 0 0.75rem;font-size:1.25rem;font-weight:600;min-height:1.75em;line-height:1.4;font-family:'Space Grotesk',system-ui,sans-serif;box-sizing:border-box}
+      .footer-brand-text p{margin:0;font-size:0.9rem;line-height:1.6;min-height:2.8em;box-sizing:border-box}
+      .footer-col{min-height:200px;box-sizing:border-box}
+      .footer-bottom{min-height:60px;margin-top:3rem;padding-top:2rem;box-sizing:border-box}
+      .footer-heading{min-height:1.2em;line-height:1.2;box-sizing:border-box}
+      .footer-nav{min-height:150px;box-sizing:border-box}
+      .footer-link{min-height:1.5em;line-height:1.5;box-sizing:border-box}
+      .footer-contact-info{min-height:60px;box-sizing:border-box}
+      .footer-social-links{min-height:80px;box-sizing:border-box}
+      .footer-copyright{min-height:1.5em;line-height:1.5;box-sizing:border-box}
     </style>
   </head>
   <body>
