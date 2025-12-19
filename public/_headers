@@ -4,13 +4,29 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   
-  # Performance: Cache static assets
+  # Performance: Cache static assets (1 year)
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Performance: Cache CSS with shorter TTL for updates
-/*.css
-  Cache-Control: public, max-age=86400
+# Performance: Cache CSS with versioned filenames (1 year)
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Performance: Cache JS with versioned filenames (1 year)
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Performance: Cache images (1 year)
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Performance: Cache fonts (1 year)
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Performance: Cache HTML with shorter TTL
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
 
 # Performance: Preload critical resources
 /index.html

@@ -81,7 +81,7 @@ onMounted(() => {
     <div class="grain-bg"></div>
     <header class="site-header">
       <RouterLink to="/" class="logo">
-        <img :src="logoSrc" alt="Community Development logo" class="logo-mark" loading="eager" fetchpriority="high" width="50" height="50" />
+        <img :src="logoSrc" alt="Community Development logo" class="logo-mark" loading="eager" fetchpriority="high" width="50" height="50" decoding="async" />
         <div class="logo-text">
           <span>NeoRural Development</span>
         </div>

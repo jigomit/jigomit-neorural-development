@@ -190,8 +190,14 @@ img {
   line-height: 1.2;
   /* Performance: Prevent layout shift from font loading */
   min-height: 1.2em;
+  height: 1.2em;
   font-size: 1rem;
   font-weight: 700;
+  box-sizing: border-box;
+  /* Performance: Prevent font loading shifts */
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-display: swap;
+  overflow: hidden;
 }
 
 .nav-toggle {
@@ -1197,6 +1203,12 @@ main {
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 0;
+  /* Performance: Prevent layout shift - reserve exact space */
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  /* Performance: Prevent image loading shift */
+  background-color: rgba(255, 255, 255, 0.05);
+  display: block;
 }
 
 .footer-heading {
@@ -1307,10 +1319,16 @@ main {
   font-size: 0.875rem;
   font-weight: 500;
   margin: 0;
-  /* Performance: Reserve space to prevent layout shift */
+  /* Performance: Reserve exact space to prevent layout shift */
   min-height: 1.5em;
+  height: 1.5em;
   line-height: 1.5;
   box-sizing: border-box;
+  /* Performance: Prevent font loading shifts */
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .footer-legal {

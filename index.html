@@ -42,10 +42,12 @@
     <meta name="twitter:site" content="@neoruraldev" />
     <meta name="twitter:creator" content="@neoruraldev" />
 
-    <!-- Performance: Resource Hints for external resources (preconnect to same origin not needed) -->
+    <!-- Performance: Resource Hints for external resources -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <!-- Performance: Preconnect to main domain for faster asset loading -->
+    <link rel="preconnect" href="https://jigomit-neorural-development.netlify.app" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
@@ -151,6 +153,7 @@
       .footer-contact-info{min-height:60px;box-sizing:border-box}
       .footer-social-links{min-height:80px;box-sizing:border-box}
       .footer-copyright{min-height:1.5em;line-height:1.5;box-sizing:border-box}
+      .footer-logo{width:56px;height:56px;aspect-ratio:1/1;box-sizing:border-box;display:block;background-color:rgba(255,255,255,0.05)}
     </style>
   </head>
   <body>

@@ -15,12 +15,32 @@ gsap.config({
   force3D: 'auto', // Auto-detect 3D support
 });
 
+// Performance: Batch DOM reads/writes to prevent forced reflows
+let rafId = null;
+const pendingUpdates = new Set();
+
+const batchUpdates = () => {
+  if (pendingUpdates.size === 0) return;
+  
+  // Batch all ScrollTrigger refreshes
+  ScrollTrigger.refresh();
+  pendingUpdates.clear();
+  rafId = null;
+};
+
+export const scheduleScrollTriggerRefresh = () => {
+  pendingUpdates.add('refresh');
+  if (!rafId) {
+    rafId = requestAnimationFrame(batchUpdates);
+  }
+};
+
 export const animateIn = (element, options = {}) => {
   if (!element || !shouldAnimate) return;
 
   const { delay = 0, y = 40, duration = 1.1, immediateRender = false } = options;
 
-  // Use will-change for GPU acceleration
+  // Use will-change for GPU acceleration (set before any reads)
   if (element.style) {
     element.style.willChange = 'transform, opacity';
   }
@@ -38,6 +58,9 @@ export const animateIn = (element, options = {}) => {
       start: 'top 85%',
       toggleActions: 'play none none reverse',
       once: true, // Only animate once for better performance
+      // Performance: Batch refreshes to prevent forced reflows
+      refreshPriority: -1, // Lower priority to batch with other refreshes
+      invalidateOnRefresh: false, // Don't recalculate on refresh
     },
     onComplete: () => {
       // Remove will-change after animation
@@ -69,9 +92,9 @@ export const useSectionReveal = (elements) => {
   };
 };
 
-// Optimized scroll trigger refresh
+// Optimized scroll trigger refresh - batched to prevent forced reflows
 export const refreshScrollTriggers = () => {
-  ScrollTrigger.refresh();
+  scheduleScrollTriggerRefresh();
 };
 
 // Batch scroll trigger updates for performance
@@ -79,6 +102,6 @@ let refreshTimeout;
 export const debouncedRefresh = () => {
   clearTimeout(refreshTimeout);
   refreshTimeout = setTimeout(() => {
-    ScrollTrigger.refresh();
+    scheduleScrollTriggerRefresh();
   }, 150);
 };
