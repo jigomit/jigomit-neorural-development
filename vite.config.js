@@ -11,12 +11,13 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'es2015',
+    target: 'es2020', // Modern target to avoid deprecated APIs
     minify: 'esbuild', // Faster and built-in
     // Remove console.log in production
     esbuild: {
       drop: ['console', 'debugger'],
       legalComments: 'none',
+      target: 'es2020', // Modern target to avoid deprecated APIs
     },
     // Performance: Optimize chunk sizes
     cssMinify: true,

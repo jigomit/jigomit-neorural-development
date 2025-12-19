@@ -1,8 +1,10 @@
-# Netlify Headers for Performance
+# Netlify Headers for Performance and Security
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   
   # Performance: Cache static assets (1 year)
 /assets/*
@@ -31,4 +33,3 @@
 # Performance: Preload critical resources
 /index.html
   Link: </logo.png>; rel=preload; as=image; fetchpriority=high
-
