@@ -12,10 +12,10 @@
           <RouterLink :to="{ name: 'initiatives' }" class="primary">Explore Programs</RouterLink>
           <RouterLink :to="{ name: 'contact' }" class="ghost">Plan a Project</RouterLink>
         </div>
-        <div class="hero-metrics">
-          <div v-for="metric in metrics" :key="metric.label">
-            <span class="value">{{ metric.value }}</span>
-            <span class="label">{{ metric.label }}</span>
+        <div class="hero-metrics" style="min-height: 4.5em; box-sizing: border-box;">
+          <div v-for="metric in metrics" :key="metric.label" style="min-width: 120px; box-sizing: border-box;">
+            <span class="value" style="min-height: 1.5em; line-height: 1.2; display: block;">{{ metric.value }}</span>
+            <span class="label" style="min-height: 1.2em; line-height: 1.2; display: block;">{{ metric.label }}</span>
           </div>
         </div>
       </div>

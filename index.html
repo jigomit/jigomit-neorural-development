@@ -1,10 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Performance: Preconnect to same origin FIRST (before any other resources) -->
-    <!-- Preconnect to current origin for faster resource loading -->
-    <link rel="preconnect" href="https://jigomit-neorural-development.netlify.app" crossorigin="anonymous" />
-    <link rel="dns-prefetch" href="https://jigomit-neorural-development.netlify.app" />
+    <!-- Performance: Preconnect removed for same-origin (browser handles automatically) -->
+    <!-- DNS prefetch not needed for same-origin resources -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <!-- Primary SEO -->
@@ -135,6 +133,10 @@
       .logo-mark{width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);box-shadow:0 8px 22px rgba(0,0,0,0.45);object-fit:cover;display:block}
       .logo-text{display:flex;flex-direction:column;line-height:1.2;min-height:1.2em;font-size:1rem;font-weight:700}
       .hero-copy p{min-height:4.5em;line-height:1.6;box-sizing:border-box;font-display:swap;content-visibility:auto;contain-intrinsic-size:auto 4.5em;color:var(--muted);margin-bottom:1.25rem}
+      .hero-metrics{min-height:4.5em;box-sizing:border-box;content-visibility:auto;contain-intrinsic-size:auto 4.5em;display:flex;gap:2rem;flex-wrap:wrap}
+      .hero-metrics>div{min-width:120px;box-sizing:border-box}
+      .hero-metrics .value{min-height:1.5em;line-height:1.2;display:block;font-size:1.5rem;font-weight:700;color:var(--accent-alt)}
+      .hero-metrics .label{min-height:1.2em;line-height:1.2;display:block}
       .page{padding:3.5rem 0 0;min-height:calc(100vh - 120px);transform:translateZ(0)}
       img{max-width:100%;display:block;height:auto}
       /* Performance: Reserve exact space for footer to prevent layout shift */

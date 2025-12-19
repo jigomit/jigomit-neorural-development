@@ -95,7 +95,7 @@ export default defineConfig({
       },
     },
     chunkSizeWarningLimit: 1000,
-    cssCodeSplit: true,
+    cssCodeSplit: false, // Performance: Disable CSS code splitting to reduce critical path chain
     sourcemap: false,
     // Enable compression
     reportCompressedSize: true,

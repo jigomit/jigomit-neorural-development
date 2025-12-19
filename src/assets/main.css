@@ -446,6 +446,18 @@ main {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  /* Performance: Reserve exact space to prevent layout shift (0.302 CLS fix) */
+  min-height: 4.5em;
+  box-sizing: border-box;
+  /* Performance: Prevent layout recalculation */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 4.5em;
+}
+
+.hero-metrics > div {
+  /* Performance: Reserve space for each metric item */
+  min-width: 120px;
+  box-sizing: border-box;
 }
 
 .hero-metrics .value {
@@ -453,6 +465,16 @@ main {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--accent-alt);
+  /* Performance: Reserve space for value */
+  min-height: 1.5em;
+  line-height: 1.2;
+}
+
+.hero-metrics .label {
+  /* Performance: Reserve space for label */
+  display: block;
+  min-height: 1.2em;
+  line-height: 1.2;
 }
 
 .hero-media {
