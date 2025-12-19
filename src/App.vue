@@ -54,22 +54,24 @@ const handleLinkHover = debounce((routeName) => {
 }, 100);
 
 onMounted(() => {
-  // Performance: Prefetch critical routes after page is interactive
+  // Performance: Only prefetch after page is fully interactive and idle
+  // Don't prefetch ContactView in critical path - it's not needed for initial render
   if ('requestIdleCallback' in window) {
     requestIdleCallback(() => {
-      const criticalRoutes = ['about', 'initiatives', 'contact'];
+      // Only prefetch routes that are likely to be visited from home page
+      const criticalRoutes = ['about', 'initiatives'];
       criticalRoutes.forEach((routeName) => {
         handleLinkHover(routeName);
       });
-    }, { timeout: 2000 });
+    }, { timeout: 3000 }); // Wait longer to not block critical path
   } else {
-    // Fallback for browsers without requestIdleCallback
+    // Fallback: wait even longer to ensure page is interactive
     setTimeout(() => {
-      const criticalRoutes = ['about', 'initiatives', 'contact'];
+      const criticalRoutes = ['about', 'initiatives'];
       criticalRoutes.forEach((routeName) => {
         handleLinkHover(routeName);
       });
-    }, 2000);
+    }, 3000);
   }
 });
 </script>

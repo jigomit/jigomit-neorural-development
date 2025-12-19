@@ -24,7 +24,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Separate vendor chunks for better caching
+          // Performance: Optimize chunk splitting to reduce critical path
           if (id.includes('node_modules')) {
             if (id.includes('three')) {
               return 'vendor-three';
@@ -37,6 +37,19 @@ export default defineConfig({
             }
             // Other node_modules
             return 'vendor-other';
+          }
+          // Performance: Separate route chunks to prevent blocking
+          if (id.includes('/views/')) {
+            const viewName = id.split('/views/')[1].split('.')[0];
+            // Don't bundle home view with others - it's critical
+            if (viewName === 'HomeView') {
+              return undefined; // Keep in main bundle
+            }
+            // Group less critical views
+            if (['ContactView', 'BlogView', 'BlogDetailView'].includes(viewName)) {
+              return 'views-secondary';
+            }
+            return `views-${viewName.toLowerCase()}`;
           }
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',

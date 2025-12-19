@@ -157,21 +157,10 @@ const router = createRouter({
   routes,
 });
 
-// Prefetch routes on hover for faster navigation
+// Performance: Optimize route loading - don't block navigation
 router.beforeEach((to, from, next) => {
-  // Prefetch the route component
-  if (to.matched.length === 0) {
-    next();
-    return;
-  }
-  
-  const matched = to.matched[to.matched.length - 1];
-  if (matched && matched.components) {
-    // Component is already loaded via dynamic import
-    next();
-  } else {
-    next();
-  }
+  // Allow navigation immediately, components load asynchronously
+  next();
 });
 
 export default router;
