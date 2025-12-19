@@ -5,7 +5,7 @@
       <h1>We are village futurists powering community-led rural development ecosystems.</h1>
       <p>
         Our teams embed with councils, cooperatives, and youth leaders to map assets, co-create regenerative masterplans, and run
-        long-term, community-led rural development programs that blend design, finance, and digital infrastructure.
+        long-term, community-led rural development programs. Learn how to partner with rural development NGO for village transformation through our participatory rural development approach explained, community-led sustainable development methodology, and regenerative village development models and frameworks.
       </p>
     </div>
 
@@ -44,7 +44,7 @@ const panels = [
   {
     category: 'Immersion',
     title: 'Community Listening',
-    description: 'Participatory labs that surface citizen aspirations via storytelling, sensory mapping, and data diaries.',
+    description: 'Participatory labs that surface citizen aspirations via storytelling, sensory mapping, and data diaries. Our participatory rural development approach ensures village development programs based on community participation.',
     points: ['Village walk-throughs', 'Cultural rituals', 'Geo-spatial data layers'],
   },
   {

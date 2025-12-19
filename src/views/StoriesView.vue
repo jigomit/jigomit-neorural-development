@@ -5,8 +5,7 @@
         <p class="eyebrow">Community Voices</p>
         <h1>Immersive stories of rural regeneration authored by citizens.</h1>
         <p>
-          Experience how farmers, artisans, and youth collectives are pairing ancestral knowledge with modern tech to transform their
-          homelands.
+          Experience real-world examples of sustainable village transformation. Discover community-led rural development success stories from India, village transformation stories through participatory development, and rural development case studies with measurable impact showcasing sustainable village development examples and testimonials.
         </p>
       </div>
       <div class="story-metrics">
@@ -19,7 +18,7 @@
 
     <div class="stories-grid">
       <article v-for="story in stories" :key="story.title" class="story-card" ref="storyRefs">
-        <img :src="story.image" :alt="story.title" />
+        <img :src="story.image" :alt="`${story.title} - Real-world example of sustainable village transformation through community-led rural development success stories from India`" />
         <div class="story-card__body">
           <p class="eyebrow">{{ story.location }}</p>
           <h2>{{ story.title }}</h2>

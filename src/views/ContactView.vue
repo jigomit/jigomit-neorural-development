@@ -2,7 +2,10 @@
   <section class="page contact-view">
     <div class="page-heading" ref="headingRef">
       <p class="eyebrow">Contact</p>
-      <h1>Let’s craft a community development roadmap tailored for your village.</h1>
+      <h1>Let's craft a community development roadmap tailored for your village.</h1>
+      <p>
+        Learn how to partner with rural development organization for sustainable village programs. Explore CSR partnerships for sustainable village development programs, funding opportunities for rural development initiatives, and collaborate on community-led rural development projects.
+      </p>
     </div>
 
     <div class="contact-shell" ref="cardRef">

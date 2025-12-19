@@ -7,7 +7,7 @@
       <h1>{{ post.title }}</h1>
       
       <div class="blog-hero-image" v-if="post.image">
-        <img :src="post.image" :alt="post.title" />
+        <img :src="post.image" :alt="`${post.title} - Insights on community-led village transformation programs and sustainable rural development best practices`" />
         <figcaption v-if="post.imageCaption" class="blog-image-caption">{{ post.imageCaption }}</figcaption>
       </div>
 
@@ -82,7 +82,7 @@ const injectArticleSchema = () => {
       '@type': 'WebPage',
       '@id': `${BASE_URL}/blog/${post.value.slug}`,
     },
-    keywords: 'community-led rural development, sustainable village transformation, water security solutions, participatory rural development, village development programs',
+    keywords: 'insights on community-led village transformation programs, best practices for sustainable rural development, rural development frameworks and methodologies, village development program implementation guides, community-led rural development initiatives, water security solutions for rural communities, participatory rural development approach',
   };
 
   const script = document.createElement('script');

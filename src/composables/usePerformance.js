@@ -1,4 +1,4 @@
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 
 /**
  * Debounce function to limit how often a function can be called
@@ -154,5 +154,113 @@ export function useWillChange(elementRef, property = 'transform') {
       elementRef.value.style.willChange = 'auto';
     }
   });
+}
+
+/**
+ * Performance monitoring utilities
+ */
+export function usePerformanceMonitor() {
+  const metrics = ref({
+    fcp: null, // First Contentful Paint
+    lcp: null, // Largest Contentful Paint
+    fid: null, // First Input Delay
+    cls: null, // Cumulative Layout Shift
+    ttfb: null, // Time to First Byte
+  });
+
+  onMounted(() => {
+    if (typeof window === 'undefined' || !('PerformanceObserver' in window)) return;
+
+    // Measure FCP (First Contentful Paint)
+    try {
+      const paintObserver = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.name === 'first-contentful-paint') {
+            metrics.value.fcp = Math.round(entry.startTime);
+          }
+        }
+      });
+      paintObserver.observe({ entryTypes: ['paint'] });
+    } catch (e) {
+      // Performance Observer not supported
+    }
+
+    // Measure LCP (Largest Contentful Paint)
+    try {
+      const lcpObserver = new PerformanceObserver((list) => {
+        const entries = list.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        metrics.value.lcp = Math.round(lastEntry.renderTime || lastEntry.loadTime);
+      });
+      lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+    } catch (e) {
+      // LCP not supported
+    }
+
+    // Measure FID (First Input Delay)
+    try {
+      const fidObserver = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          metrics.value.fid = Math.round(entry.processingStart - entry.startTime);
+        }
+      });
+      fidObserver.observe({ entryTypes: ['first-input'] });
+    } catch (e) {
+      // FID not supported
+    }
+
+    // Measure CLS (Cumulative Layout Shift)
+    try {
+      let clsValue = 0;
+      const clsObserver = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (!entry.hadRecentInput) {
+            clsValue += entry.value;
+            metrics.value.cls = Math.round(clsValue * 1000) / 1000;
+          }
+        }
+      });
+      clsObserver.observe({ entryTypes: ['layout-shift'] });
+    } catch (e) {
+      // CLS not supported
+    }
+
+    // Measure TTFB (Time to First Byte)
+    if (performance.timing) {
+      const ttfb = performance.timing.responseStart - performance.timing.requestStart;
+      metrics.value.ttfb = Math.round(ttfb);
+    }
+  });
+
+  return metrics;
+}
+
+/**
+ * Lazy load images with intersection observer
+ */
+export function useLazyImage(src, placeholder = null) {
+  const imageSrc = ref(placeholder || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E');
+  const isLoaded = ref(false);
+  const { elementRef, hasIntersected } = useIntersectionObserver({
+    rootMargin: '50px',
+    threshold: 0.1,
+  });
+
+  watch(
+    () => hasIntersected.value,
+    (visible) => {
+      if (visible && !isLoaded.value) {
+        const img = new Image();
+        img.onload = () => {
+          imageSrc.value = src;
+          isLoaded.value = true;
+        };
+        img.src = src;
+      }
+    },
+    { immediate: true }
+  );
+
+  return { imageSrc, isLoaded, elementRef };
 }
 

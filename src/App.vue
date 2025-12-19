@@ -69,7 +69,7 @@ onMounted(() => {
     <div class="grain-bg"></div>
     <header class="site-header">
       <RouterLink to="/" class="logo">
-        <img :src="logoSrc" alt="Community Development logo" class="logo-mark" />
+        <img :src="logoSrc" alt="Community Development logo" class="logo-mark" loading="eager" fetchpriority="high" />
         <div class="logo-text">
           <span>NeoRural Development</span>
         </div>
@@ -115,7 +115,7 @@ onMounted(() => {
       <div class="footer-glass">
         <div class="footer-grid">
           <div class="footer-col footer-brand">
-            <img :src="logoSrc" alt="NeoRural Development logo" class="footer-logo" />
+            <img :src="logoSrc" alt="NeoRural Development logo" class="footer-logo" loading="lazy" />
             <div class="footer-brand-text">
               <h3>NeoRural Development</h3>
               <p>Partners for rural transformation. Designing resilient, thriving villages with community-led innovation.</p>

@@ -9,7 +9,7 @@ const routes = [
       transition: 'page-rise',
       title: 'Community-Led Rural Development Initiatives | Sustainable Village Transformation Programs',
       description:
-        "Explore NeoRural Development's flagship community-led rural development initiatives improving livelihoods, water security and climate resilience. Partner with us for sustainable village transformation programs, water security solutions for rural communities, and climate-resilient village infrastructure development.",
+        "Explore NeoRural Development's flagship community-led rural development initiatives for sustainable village transformation. Discover water security solutions for rural communities in India, climate-resilient village infrastructure development programs, and participatory rural development approaches that transform villages through sustainable agriculture development programs in rural villages.",
       keywords:
         'community-led rural development initiatives, sustainable village development programs, water security solutions for rural communities, rural infrastructure development projects, community-based rural transformation programs, sustainable agriculture development in villages, rural livelihood improvement programs, climate-resilient village infrastructure',
     },
@@ -22,7 +22,7 @@ const routes = [
       transition: 'page-zoom',
       title: 'About NeoRural Development | Partners in Community-Led Rural Development & Village Transformation',
       description:
-        'Learn how NeoRural Development partners with villages to co-design community-led rural development initiatives rooted in lived experience. Discover our participatory rural development approach and regenerative village development models.',
+        'Learn how to partner with rural development NGO for village transformation. Discover our participatory rural development approach explained, community-led sustainable development methodology, and regenerative village development models and frameworks for sustainable village programs.',
       keywords:
         'about rural development NGO, participatory rural development approach, community-led sustainable development, village development programs, rural development partners, sustainable village transformation, regenerative village development models',
     },
@@ -35,7 +35,7 @@ const routes = [
       transition: 'page-slide',
       title: 'Rural Development Initiatives | Water Security, Livelihoods & Infrastructure Programs',
       description:
-        "Browse NeoRural's portfolio of community-led rural development initiatives focused on water conservation, livelihoods, health and village infrastructure. Explore our water security solutions for rural communities, sustainable agriculture development programs, and rural digital infrastructure development projects.",
+        "Browse NeoRural's portfolio featuring water security solutions for rural communities implementation, village water management systems design and implementation, sustainable agriculture development programs in villages, rural digital infrastructure development projects, and climate smart agriculture programs for rural communities.",
       keywords:
         'rural development initiatives, water security solutions for rural communities, village water management systems, sustainable agriculture development in villages, rural digital infrastructure development, climate smart agriculture programs, village digital commons, resilient water networks, rural livelihood improvement programs',
     },
@@ -48,7 +48,7 @@ const routes = [
       transition: 'page-shift',
       title: 'Impact Metrics | Measurable Outcomes from Community-Led Rural Development Programs',
       description:
-        "See the impact metrics and stories behind NeoRural Development's community-led rural development initiatives across villages. Discover how our sustainable village development programs are transforming rural communities through water security, livelihoods, and infrastructure improvements.",
+        "See measurable outcomes from community-led rural development programs. Explore village development program impact metrics and results, sustainable rural development impact assessment, and rural transformation success stories and case studies showcasing community-led development results.",
       keywords:
         'rural development impact metrics, village development program outcomes, community-led development results, sustainable rural development impact, rural transformation success stories, village development program impact, rural development NGO impact',
     },
@@ -61,7 +61,7 @@ const routes = [
       transition: 'page-fade',
       title: 'Success Stories | Community-Led Rural Development in Action Across Villages',
       description:
-        "Read stories from communities and partners where NeoRural's community-led rural development initiatives are transforming daily life. Discover real-world examples of sustainable village transformation, water security solutions, and rural infrastructure development success stories.",
+        "Read real-world examples of sustainable village transformation and community-led rural development success stories from India. Discover village transformation stories through participatory development, rural development case studies with measurable impact, and sustainable village development examples and testimonials.",
       keywords:
         'rural development success stories, village transformation stories, community-led development case studies, sustainable village development examples, rural development success stories India, village development program stories, rural transformation testimonials',
     },
@@ -87,7 +87,7 @@ const routes = [
       transition: 'page-zoom',
       title: 'Contact NeoRural Development | Partner on Rural Development Initiatives & Village Programs',
       description:
-        'Reach out to NeoRural Development to collaborate on community-led rural development initiatives, CSR partnerships and rural programs. Partner with us for sustainable village transformation, water security projects, and climate-resilient infrastructure development.',
+        'Learn how to partner with rural development organization for sustainable village programs. Explore CSR partnerships for sustainable village development programs, funding opportunities for rural development initiatives, and collaborate on community-led rural development projects.',
       keywords:
         'contact rural development NGO, partner with rural development organization, CSR partnerships rural development, village development program partnership, rural development collaboration, sustainable village development partnership, rural development funding opportunities',
     },

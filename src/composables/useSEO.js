@@ -212,7 +212,7 @@ export function useSEO() {
     const existingScripts = document.querySelectorAll('script[type="application/ld+json"]');
     existingScripts.forEach((script) => script.remove());
 
-    const structuredData = getStructuredData();
+    const structuredData = enhanceStructuredDataWithKeywords(getStructuredData());
 
     // Inject Organization schema
     const orgScript = document.createElement('script');
@@ -245,6 +245,42 @@ export function useSEO() {
     return LONG_TAIL_KEYWORDS[route.name] || LONG_TAIL_KEYWORDS.home;
   };
 
+  const getPrimaryKeyword = () => {
+    const keywords = getLongTailKeywords();
+    return keywords[0] || '';
+  };
+
+  const getSecondaryKeywords = () => {
+    const keywords = getLongTailKeywords();
+    return keywords.slice(1, 4); // Get next 3 keywords
+  };
+
+  const getKeywordForContext = (context = 'primary') => {
+    const keywords = getLongTailKeywords();
+    if (context === 'primary') return keywords[0] || '';
+    if (context === 'secondary') return keywords[1] || keywords[0] || '';
+    // Return random keyword for variety
+    return keywords[Math.floor(Math.random() * keywords.length)] || '';
+  };
+
+  const enhanceStructuredDataWithKeywords = (structuredData) => {
+    const keywords = getLongTailKeywords();
+    const primaryKeyword = getPrimaryKeyword();
+    
+    // Add keywords to organization description
+    if (structuredData.organization) {
+      structuredData.organization.keywords = keywords.join(', ');
+      structuredData.organization.description = `${structuredData.organization.description} Our ${primaryKeyword} programs transform rural communities.`;
+    }
+
+    // Add keywords to website
+    if (structuredData.website) {
+      structuredData.website.keywords = keywords.join(', ');
+    }
+
+    return structuredData;
+  };
+
   onMounted(() => {
     injectStructuredData();
   });
@@ -258,6 +294,10 @@ export function useSEO() {
 
   return {
     getLongTailKeywords,
+    getPrimaryKeyword,
+    getSecondaryKeywords,
+    getKeywordForContext,
     injectStructuredData,
+    LONG_TAIL_KEYWORDS,
   };
 }

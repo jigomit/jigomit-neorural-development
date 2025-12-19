@@ -2,8 +2,8 @@
   <section class="page blog-view">
     <div class="page-heading">
       <p class="eyebrow">Blog</p>
-      <h1>Blog</h1>
-      <p class="blog-subtitle">Stories, tips & updates from our rescue community</p>
+      <h1>Rural Development Blog</h1>
+      <p class="blog-subtitle">Insights on community-led village transformation programs, best practices for sustainable rural development, rural development frameworks and methodologies, and village development program implementation guides.</p>
     </div>
 
     <div class="blog-grid">
@@ -14,7 +14,7 @@
         class="blog-card"
       >
         <div class="blog-card-image" v-if="post.image">
-          <img :src="post.image" :alt="post.title" />
+          <img :src="post.image" :alt="`${post.title} - Insights on community-led village transformation programs and sustainable rural development`" />
         </div>
         <div class="blog-card-content">
           <p class="blog-date">{{ formatDate(post.date) }}</p>

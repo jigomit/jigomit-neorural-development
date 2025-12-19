@@ -4,8 +4,7 @@
       <p class="eyebrow">Key Initiatives</p>
       <h1>Flagship community-led rural development initiatives across villages.</h1>
       <p>
-        From water security to digital commons, each initiative is co-designed with village institutions so community-led rural
-        development can scale sustainably.
+        From water security solutions for rural communities implementation to village digital commons for rural connectivity, each initiative is co-designed with village institutions. Explore our village water management systems design and implementation, sustainable agriculture development programs in villages, and rural digital infrastructure development projects.
       </p>
     </div>
 
@@ -35,19 +34,19 @@ const tileRefs = ref([]);
 const initiatives = [
   {
     title: 'Climate Smart Agro Parks',
-    description: 'Modular hydroponics, agroforestry corridors, and carbon-positive cold chains managed by cooperatives.',
+    description: 'Modular hydroponics, agroforestry corridors, and carbon-positive cold chains managed by cooperatives. Part of our climate smart agriculture programs for rural communities and sustainable agriculture development programs in villages.',
     tags: ['Soil AI', 'Solar chilling', 'Carbon guilds'],
     image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Village Digital Commons',
-    description: 'Telehealth, fintech, and maker labs inside circular commons powered by microgrids.',
+    description: 'Telehealth, fintech, and maker labs inside circular commons powered by microgrids. Our village digital commons for rural connectivity are part of comprehensive rural digital infrastructure development projects.',
     tags: ['Telehealth', 'Makerspaces', 'Digital IDs'],
     image: premiumImage,
   },
   {
     title: 'Resilient Water Networks',
-    description: 'Watershed cooperatives building check dams, bio-swales, and AI-managed distribution.',
+    description: 'Watershed cooperatives building check dams, bio-swales, and AI-managed distribution. Our resilient water networks for village water security ensure year-round water availability through village water management systems.',
     tags: ['Hydrology twins', 'Community sensors', 'Water credits'],
     image: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?auto=format&fit=crop&w=1200&q=80',
   },

@@ -4,10 +4,9 @@
     <div class="hero-grid">
       <div class="hero-copy" ref="copyRef">
         <p class="eyebrow">Community-led Rural Development</p>
-        <h1>Community-led rural development initiatives for regenerative village futures.</h1>
+        <h1>Community-led rural development initiatives for sustainable village transformation.</h1>
         <p>
-          We orchestrate bold, community-led rural development initiatives across infrastructure, livelihoods, and culture so that rural
-          communities can thrive in harmony with their lands.
+          We orchestrate bold, community-led rural development initiatives for sustainable village transformation across infrastructure, livelihoods, and culture. Our participatory rural development approach empowers rural communities with water security solutions for rural communities, climate-resilient village infrastructure development programs, and sustainable agriculture development programs in rural villages.
         </p>
         <div class="hero-actions">
           <RouterLink :to="{ name: 'initiatives' }" class="primary">Explore Programs</RouterLink>
@@ -33,11 +32,23 @@
         </div>
         <div class="hero-photo-stack">
           <figure>
-            <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80" alt="Solar panels in rural community" />
+            <img 
+              src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80" 
+              alt="Solar-powered irrigation systems for sustainable agriculture development programs in rural villages"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+            />
             <figcaption>Co-ops modernizing irrigation</figcaption>
           </figure>
           <figure>
-            <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=900&q=80" alt="Community meeting and collaboration" />
+            <img 
+              src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=900&q=80" 
+              alt="Community-led rural development initiatives through participatory rural development approach"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+            />
             <figcaption>Artisan-led innovation labs</figcaption>
           </figure>
         </div>

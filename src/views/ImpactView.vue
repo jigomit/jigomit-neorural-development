@@ -5,8 +5,7 @@
         <p class="eyebrow">Impact Numbers</p>
         <h1>Every community-led rural development initiative is measured through climate, wellbeing, and prosperity signals.</h1>
         <p>
-          We combine satellite analytics, citizen observatories, and regenerative finance dashboards to ensure the story of community-led
-          rural development progress is transparent and community-owned.
+          We combine satellite analytics, citizen observatories, and regenerative finance dashboards to track measurable outcomes from community-led rural development programs. Explore village development program impact metrics and results, sustainable rural development impact assessment, and community-led development results and outcomes.
         </p>
       </div>
       <div class="impact-counters">
@@ -19,7 +18,7 @@
     </div>
 
     <div class="impact-panorama" ref="panoramaRef">
-      <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1400&q=80" alt="Community development impact" />
+      <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1400&q=80" alt="Measurable outcomes from community-led rural development programs showing village transformation through sustainable village development programs" />
       <div class="impact-panorama__overlay">
         <p>Live Earth observation + local data records</p>
         <span>Farmer scientists • Drone scans • Digital commons</span>

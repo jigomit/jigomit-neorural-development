@@ -41,6 +41,30 @@ body {
   contain: layout style paint;
 }
 
+/* Performance: Optimize image rendering */
+img {
+  content-visibility: auto;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Performance: Reduce layout shifts */
+img[width],
+img[height] {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Performance: Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -78,6 +102,10 @@ img {
   mix-blend-mode: overlay;
   pointer-events: none;
   z-index: -1;
+  /* Performance: Optimize background rendering */
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .site-header {

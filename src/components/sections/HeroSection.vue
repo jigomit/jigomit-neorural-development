@@ -19,9 +19,21 @@
       </div>
     </div>
     <div class="hero__visuals">
-      <HeroGlobe ref="globeRef" />
+      <Suspense>
+        <template #default>
+          <HeroGlobe ref="globeRef" />
+        </template>
+        <template #fallback>
+          <div class="hero-globe-placeholder" style="width: 420px; height: 420px; background: rgba(116, 245, 213, 0.1); border-radius: 50%;"></div>
+        </template>
+      </Suspense>
       <div class="hero__image-card" ref="imageRef">
-        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Rural innovation" />
+        <img 
+          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" 
+          alt="Rural innovation"
+          loading="lazy"
+          decoding="async"
+        />
         <div class="image-card__overlay">
           <p>Village innovation labs</p>
           <span>AI crop monitoring • Solar-powered irrigation • Youth-led design sprints</span>
@@ -32,10 +44,12 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import HeroGlobe from '@/components/HeroGlobe.vue';
+import { onMounted, ref, defineAsyncComponent } from 'vue';
 import { animateIn } from '@/composables/useGsapAnimations';
 import logoSrc from '@/assets/images/logo.png';
+
+// Lazy load HeroGlobe component
+const HeroGlobe = defineAsyncComponent(() => import('@/components/HeroGlobe.vue'));
 
 const contentRef = ref(null);
 const imageRef = ref(null);
