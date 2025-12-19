@@ -42,11 +42,7 @@
     <meta name="twitter:site" content="@neoruraldev" />
     <meta name="twitter:creator" content="@neoruraldev" />
 
-    <!-- Performance: Preconnect to own domain first (critical for reducing latency) -->
-    <link rel="preconnect" href="https://jigomit-neorural-development.netlify.app" />
-    <link rel="dns-prefetch" href="https://jigomit-neorural-development.netlify.app" />
-    
-    <!-- Performance: Resource Hints for external resources -->
+    <!-- Performance: Resource Hints for external resources (preconnect to same origin not needed) -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
@@ -74,18 +70,50 @@
     <!-- Preload critical resources for LCP -->
     <link rel="preload" href="/logo.png" as="image" type="image/png" fetchpriority="high" />
     
-    <!-- Performance: Optimize script loading -->
+    <!-- Performance: Make CSS non-blocking to break critical chain -->
     <script>
-      // Performance: Preconnect and optimize resource loading
+      // Make CSS load asynchronously to prevent blocking the critical path
       (function() {
-        // Preconnect to own domain is already in head
-        // Defer non-critical route prefetching
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(() => {
-            // Prefetch secondary routes only after page is interactive
-            const secondaryRoutes = ['contact', 'blog', 'gallery'];
-            // These will be prefetched by router on hover, not blocking
-          }, { timeout: 3000 });
+        // Intercept CSS link injection immediately
+        const makeCSSAsync = function(link) {
+          if (link.tagName === 'LINK' && link.rel === 'stylesheet' && 
+              link.href && link.href.includes('.css') && 
+              !link.hasAttribute('data-critical') &&
+              !link.href.includes('fonts.googleapis.com') &&
+              link.media !== 'print') {
+            link.media = 'print';
+            link.onload = function() {
+              this.media = 'all';
+              this.onload = null;
+            };
+            // Fallback for browsers that don't fire onload
+            setTimeout(function() {
+              if (link.media === 'print') {
+                link.media = 'all';
+              }
+            }, 100);
+          }
+        };
+        
+        // Watch for new stylesheet links
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            mutation.addedNodes.forEach(makeCSSAsync);
+          });
+        });
+        
+        // Start observing immediately
+        if (document.head) {
+          observer.observe(document.head, { childList: true });
+        } else {
+          document.addEventListener('DOMContentLoaded', function() {
+            observer.observe(document.head, { childList: true });
+          });
+        }
+        
+        // Also check existing links
+        if (document.head) {
+          document.head.querySelectorAll('link[rel="stylesheet"]').forEach(makeCSSAsync);
         }
       })();
     </script>
