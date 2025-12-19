@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
+// Performance: Import CSS - Vite will handle it, but we'll optimize loading
 import '@/assets/main.css';
 import { useSEO } from './composables/useSEO';
 

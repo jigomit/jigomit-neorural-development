@@ -188,6 +188,10 @@ img {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
+  /* Performance: Prevent layout shift from font loading */
+  min-height: 1.2em;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .nav-toggle {
@@ -1088,10 +1092,15 @@ main {
   padding: 4rem 0 2rem;
   margin-top: 4rem;
   position: relative;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 400px;
+  contain: layout style;
 }
 
 .footer-glass {
   padding: 3rem 2.5rem;
+  /* Performance: Prevent layout shift */
+  min-height: 350px;
 }
 
 .footer-grid {
@@ -1127,6 +1136,8 @@ main {
 
 .footer-brand-text {
   margin-top: 1rem;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 80px;
 }
 
 .footer-brand-text h3 {
@@ -1290,6 +1301,7 @@ main {
 @media (max-width: 720px) {
   .footer-glass {
     padding: 2rem 1.5rem;
+    min-height: 300px;
   }
 
   .footer-grid {
