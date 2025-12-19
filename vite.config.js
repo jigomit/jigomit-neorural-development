@@ -45,15 +45,19 @@ export default defineConfig({
           // Performance: Separate route chunks to prevent blocking
           if (id.includes('/views/')) {
             const viewName = id.split('/views/')[1].split('.')[0];
-            // Don't bundle home view with others - it's critical
+            // Don't bundle home view with others - it's critical for initial load
             if (viewName === 'HomeView') {
-              return undefined; // Keep in main bundle
+              return undefined; // Keep in main bundle for faster initial load
             }
-            // Group less critical views
-            if (['ContactView', 'BlogView', 'BlogDetailView'].includes(viewName)) {
+            // Group all non-critical views into fewer chunks to reduce requests
+            if (['ContactView', 'BlogView', 'BlogDetailView', 'PrivacyView', 'TermsView', 'GalleryView', 'StoriesView'].includes(viewName)) {
               return 'views-secondary';
             }
-            return `views-${viewName.toLowerCase()}`;
+            // Group primary views together
+            if (['AboutView', 'InitiativesView', 'ImpactView'].includes(viewName)) {
+              return 'views-primary';
+            }
+            return 'views-other';
           }
           // Performance: Defer composables that aren't critical
           if (id.includes('/composables/')) {

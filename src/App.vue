@@ -117,9 +117,8 @@ onMounted(() => {
 
     <main>
       <RouterView v-slot="{ Component, route: currentRoute }">
-        <Transition :name="currentRoute.meta.transition ?? 'page-slide'" mode="out-in" appear>
-          <component :is="Component" v-if="Component" />
-        </Transition>
+        <!-- Performance: Remove transition wrapper to reduce forced reflows -->
+        <component :is="Component" v-if="Component" :key="currentRoute.path" />
       </RouterView>
     </main>
 

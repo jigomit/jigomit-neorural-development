@@ -18,8 +18,10 @@ const initScene = async () => {
   
   const container = globeContainer.value;
   const scene = new THREE.Scene();
-  const width = container.clientWidth || 420;
-  const height = container.clientHeight || 420;
+  // Performance: Batch DOM reads to prevent forced reflow
+  const rect = container.getBoundingClientRect();
+  const width = rect.width || 420;
+  const height = rect.height || 420;
 
   const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 1000);
   camera.position.set(0, 0, 8);
@@ -71,11 +73,19 @@ const initScene = async () => {
   orbitalRing.rotation.x = Math.PI / 3;
   scene.add(orbitalRing);
 
+  // Performance: Throttle resize and batch DOM reads to prevent forced reflows
+  let resizeTimeout;
   const resize = () => {
-    const { clientWidth, clientHeight } = container;
-    renderer.setSize(clientWidth, clientHeight);
-    camera.aspect = clientWidth / clientHeight;
-    camera.updateProjectionMatrix();
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Performance: Batch DOM reads to prevent forced reflow
+      const rect = container.getBoundingClientRect();
+      const width = rect.width || container.clientWidth || 420;
+      const height = rect.height || container.clientHeight || 420;
+      renderer.setSize(width, height);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    }, 16); // Throttle to ~60fps
   };
 
   // Performance: Throttle animation when not visible

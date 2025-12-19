@@ -41,46 +41,50 @@ function updateLinkTag(rel, href) {
   tag.setAttribute('href', href);
 }
 
+// Performance: Batch DOM updates to prevent forced reflows
 router.afterEach((to) => {
-  const title = to.meta?.title || DEFAULT_TITLE;
-  const description = to.meta?.description || DEFAULT_DESCRIPTION;
-  const keywords = to.meta?.keywords || DEFAULT_KEYWORDS;
-  const canonical = BASE_URL + to.fullPath;
-  const image = to.meta?.image || `${BASE_URL}/logo.png`;
+  // Use requestAnimationFrame to batch DOM updates
+  requestAnimationFrame(() => {
+    const title = to.meta?.title || DEFAULT_TITLE;
+    const description = to.meta?.description || DEFAULT_DESCRIPTION;
+    const keywords = to.meta?.keywords || DEFAULT_KEYWORDS;
+    const canonical = BASE_URL + to.fullPath;
+    const image = to.meta?.image || `${BASE_URL}/logo.png`;
 
-  // Update title
-  document.title = title;
+    // Update title
+    document.title = title;
 
-  // Update meta tags
-  updateMetaTag('description', description);
-  updateMetaTag('keywords', keywords);
-  updateMetaTag('author', 'NeoRural Development');
-  updateMetaTag('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
-  
-  // Twitter Card tags
-  updateMetaTag('twitter:card', 'summary_large_image');
-  updateMetaTag('twitter:title', title);
-  updateMetaTag('twitter:description', description);
-  updateMetaTag('twitter:image', image);
-  updateMetaTag('twitter:site', '@neoruraldev');
-  updateMetaTag('twitter:creator', '@neoruraldev');
+    // Batch all meta tag updates
+    updateMetaTag('description', description);
+    updateMetaTag('keywords', keywords);
+    updateMetaTag('author', 'NeoRural Development');
+    updateMetaTag('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    
+    // Twitter Card tags
+    updateMetaTag('twitter:card', 'summary_large_image');
+    updateMetaTag('twitter:title', title);
+    updateMetaTag('twitter:description', description);
+    updateMetaTag('twitter:image', image);
+    updateMetaTag('twitter:site', '@neoruraldev');
+    updateMetaTag('twitter:creator', '@neoruraldev');
 
-  // Open Graph tags
-  updateMetaTag('og:type', 'website', true);
-  updateMetaTag('og:title', title, true);
-  updateMetaTag('og:description', description, true);
-  updateMetaTag('og:url', canonical, true);
-  updateMetaTag('og:image', image, true);
-  updateMetaTag('og:image:width', '1200', true);
-  updateMetaTag('og:image:height', '630', true);
-  updateMetaTag('og:site_name', 'NeoRural Development', true);
-  updateMetaTag('og:locale', 'en_US', true);
+    // Open Graph tags
+    updateMetaTag('og:type', 'website', true);
+    updateMetaTag('og:title', title, true);
+    updateMetaTag('og:description', description, true);
+    updateMetaTag('og:url', canonical, true);
+    updateMetaTag('og:image', image, true);
+    updateMetaTag('og:image:width', '1200', true);
+    updateMetaTag('og:image:height', '630', true);
+    updateMetaTag('og:site_name', 'NeoRural Development', true);
+    updateMetaTag('og:locale', 'en_US', true);
 
-  // Update canonical URL
-  updateLinkTag('canonical', canonical);
+    // Update canonical URL
+    updateLinkTag('canonical', canonical);
 
-  // Update language attribute
-  document.documentElement.lang = 'en';
+    // Update language attribute
+    document.documentElement.lang = 'en';
+  });
 });
 
 const app = createApp(App);

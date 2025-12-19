@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Performance: Preconnect to same origin FIRST (before any other resources) -->
+    <link rel="preconnect" href="https://jigomit-neorural-development.netlify.app" />
+    <link rel="dns-prefetch" href="https://jigomit-neorural-development.netlify.app" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <!-- Primary SEO -->
@@ -42,12 +45,9 @@
     <meta name="twitter:site" content="@neoruraldev" />
     <meta name="twitter:creator" content="@neoruraldev" />
 
-    <!-- Performance: Preconnect to same origin first (critical for assets) - must be early -->
-    <link rel="preconnect" href="https://jigomit-neorural-development.netlify.app" />
-    <link rel="dns-prefetch" href="https://jigomit-neorural-development.netlify.app" />
     <!-- Performance: Preconnect to font domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <!-- Performance: DNS prefetch for external resources -->
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
     
