@@ -23,12 +23,15 @@ export default defineConfig({
     reportCompressedSize: false, // Faster builds
     rollupOptions: {
       output: {
+        // Performance: Reduce critical path by deferring non-critical chunks
+        experimentalMinChunkSize: 20000,
         manualChunks: (id) => {
           // Performance: Optimize chunk splitting to reduce critical path
           if (id.includes('node_modules')) {
             if (id.includes('three')) {
               return 'vendor-three';
             }
+            // Performance: Defer GSAP - it's only needed for animations
             if (id.includes('gsap')) {
               return 'vendor-gsap';
             }
@@ -50,6 +53,17 @@ export default defineConfig({
               return 'views-secondary';
             }
             return `views-${viewName.toLowerCase()}`;
+          }
+          // Performance: Defer composables that aren't critical
+          if (id.includes('/composables/')) {
+            const composableName = id.split('/composables/')[1].split('.')[0];
+            if (composableName === 'useGsapAnimations') {
+              return 'composables-gsap';
+            }
+          }
+          // Performance: Keep GSAP vendor separate and deferred
+          if (id.includes('gsap') && !id.includes('node_modules')) {
+            return 'composables-gsap';
           }
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -74,10 +88,14 @@ export default defineConfig({
     reportCompressedSize: true,
     // Optimize asset inlining threshold
     assetsInlineLimit: 4096, // 4kb
+    // Performance: Optimize module preloading
+    modulePreload: {
+      polyfill: false, // Don't polyfill for modern browsers
+    },
   },
   optimizeDeps: {
-    include: ['vue', 'vue-router', 'gsap'],
-    exclude: ['three'], // Three.js is heavy, load it on demand
+    include: ['vue', 'vue-router'],
+    exclude: ['three', 'gsap'], // Three.js and GSAP are heavy, load on demand
   },
   // Performance: Reduce server overhead
   server: {

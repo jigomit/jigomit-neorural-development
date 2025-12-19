@@ -42,15 +42,14 @@
     <meta name="twitter:site" content="@neoruraldev" />
     <meta name="twitter:creator" content="@neoruraldev" />
 
-    <!-- Performance: Resource Hints for external resources -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="https://images.unsplash.com" />
-    <!-- Performance: Preconnect to main domain for faster asset loading -->
-    <link rel="preconnect" href="https://jigomit-neorural-development.netlify.app" crossorigin />
+    <!-- Performance: Preconnect to same origin first (critical for assets) - must be early -->
+    <link rel="preconnect" href="https://jigomit-neorural-development.netlify.app" />
+    <link rel="dns-prefetch" href="https://jigomit-neorural-development.netlify.app" />
+    <!-- Performance: Preconnect to font domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Performance: Defer Unsplash images - no preconnect to reduce initial connections -->
+    <!-- Performance: DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
     
     <!-- Performance: Load fonts asynchronously -->
     <link
@@ -153,10 +152,14 @@
       .footer-contact-info{min-height:60px;box-sizing:border-box}
       .footer-social-links{min-height:80px;box-sizing:border-box}
       .footer-copyright{min-height:1.5em;line-height:1.5;box-sizing:border-box}
-      .footer-logo{width:56px;height:56px;aspect-ratio:1/1;box-sizing:border-box;display:block;background-color:rgba(255,255,255,0.05);object-fit:cover}
+      .footer-logo{width:56px;height:56px;min-width:56px;min-height:56px;max-width:56px;max-height:56px;aspect-ratio:1/1;box-sizing:border-box;display:block;object-fit:cover;content-visibility:auto;position:absolute;top:0;left:0;opacity:0;transition:opacity 0.2s ease}
+      .footer-logo.loaded{opacity:1}
+      .footer-logo-wrapper{width:56px;height:56px;min-width:56px;min-height:56px;max-width:56px;max-height:56px;flex-shrink:0;box-sizing:border-box;background-color:rgba(255,255,255,0.05);background-image:linear-gradient(135deg,rgba(116,245,213,0.1) 0%,rgba(184,255,110,0.1) 100%);border-radius:50%;display:block;contain:layout style paint;aspect-ratio:1/1;position:relative;overflow:hidden}
       /* Performance: Prevent footer from being LCP element */
       .site-footer{content-visibility:auto;contain-intrinsic-size:auto 500px}
       .footer-brand-text p{content-visibility:auto;contain-intrinsic-size:auto 2.8em}
+      /* Performance: Optimize hero for LCP */
+      h1[data-lcp-candidate]{content-visibility:auto;contain-intrinsic-size:auto 1.2em}
     </style>
   </head>
   <body>
