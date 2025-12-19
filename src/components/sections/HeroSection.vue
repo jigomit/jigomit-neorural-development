@@ -33,6 +33,7 @@
           alt="Rural innovation"
           loading="lazy"
           decoding="async"
+          fetchpriority="low"
           width="900"
           height="563"
           style="width: 100%; height: 100%; object-fit: cover;"

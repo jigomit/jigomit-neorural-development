@@ -127,7 +127,7 @@ onMounted(() => {
       <div class="footer-glass">
         <div class="footer-grid">
           <div class="footer-col footer-brand">
-            <img :src="logoSrc" alt="NeoRural Development logo" class="footer-logo" loading="lazy" width="56" height="56" />
+            <img :src="logoSrc" alt="NeoRural Development logo" class="footer-logo" loading="lazy" width="56" height="56" decoding="async" fetchpriority="low" />
             <div class="footer-brand-text">
               <h3>NeoRural Development</h3>
               <p>Partners for rural transformation. Designing resilient, thriving villages with community-led innovation.</p>

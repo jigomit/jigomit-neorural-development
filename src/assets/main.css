@@ -1102,8 +1102,9 @@ main {
   min-height: 500px;
   height: auto;
   contain: layout style paint;
-  /* Performance: Use content-visibility for better rendering */
+  /* Performance: Use content-visibility to prevent LCP selection */
   content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
   /* Performance: Prevent font loading shifts - ensure fonts are loaded */
   font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   /* Performance: Reserve space before content loads */
@@ -1193,6 +1194,9 @@ main {
   /* Performance: Reserve exact space to prevent layout shift */
   min-height: 2.8em;
   box-sizing: border-box;
+  /* Performance: Prevent this element from being LCP */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 2.8em;
 }
 
 .footer-logo {

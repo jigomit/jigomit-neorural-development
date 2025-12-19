@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-// Performance: Import CSS - Vite will inject it, but we'll optimize the injection
+// Performance: CSS import - Vite will bundle it, but critical CSS is already inlined in index.html
 import '@/assets/main.css';
 import { useSEO } from './composables/useSEO';
 
