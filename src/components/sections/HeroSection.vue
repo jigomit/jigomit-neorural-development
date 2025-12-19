@@ -2,7 +2,7 @@
   <section class="hero" id="hero">
     <div class="hero__content" ref="contentRef">
       <div class="hero__logo-chip">
-        <img :src="logoSrc" alt="Community Development logo" />
+        <img :src="logoSrc" alt="Community Development logo" width="64" height="64" loading="eager" fetchpriority="high" />
       </div>
       <p class="eyebrow">Community Development</p>
       <h1>Designing regenerative futures for villages across the globe.</h1>
@@ -27,12 +27,15 @@
           <div class="hero-globe-placeholder" style="width: 420px; height: 420px; background: rgba(116, 245, 213, 0.1); border-radius: 50%;"></div>
         </template>
       </Suspense>
-      <div class="hero__image-card" ref="imageRef">
+      <div class="hero__image-card" ref="imageRef" style="aspect-ratio: 16/10; overflow: hidden;">
         <img 
           src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" 
           alt="Rural innovation"
           loading="lazy"
           decoding="async"
+          width="900"
+          height="563"
+          style="width: 100%; height: 100%; object-fit: cover;"
         />
         <div class="image-card__overlay">
           <p>Village innovation labs</p>

@@ -31,23 +31,29 @@
           </ul>
         </div>
         <div class="hero-photo-stack">
-          <figure>
+          <figure style="aspect-ratio: 4/3; overflow: hidden; border-radius: 24px;">
             <img 
               src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80" 
               alt="Solar-powered irrigation systems for sustainable agriculture development programs in rural villages"
               loading="lazy"
               decoding="async"
               fetchpriority="low"
+              width="900"
+              height="675"
+              style="width: 100%; height: 100%; object-fit: cover;"
             />
             <figcaption>Co-ops modernizing irrigation</figcaption>
           </figure>
-          <figure>
+          <figure style="aspect-ratio: 4/3; overflow: hidden; border-radius: 24px;">
             <img 
               src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=900&q=80" 
               alt="Community-led rural development initiatives through participatory rural development approach"
               loading="lazy"
               decoding="async"
               fetchpriority="low"
+              width="900"
+              height="675"
+              style="width: 100%; height: 100%; object-fit: cover;"
             />
             <figcaption>Artisan-led innovation labs</figcaption>
           </figure>

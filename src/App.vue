@@ -54,13 +54,23 @@ const handleLinkHover = debounce((routeName) => {
 }, 100);
 
 onMounted(() => {
-  // Prefetch critical routes
-  const criticalRoutes = ['about', 'initiatives', 'contact'];
-  criticalRoutes.forEach((routeName) => {
+  // Performance: Prefetch critical routes after page is interactive
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      const criticalRoutes = ['about', 'initiatives', 'contact'];
+      criticalRoutes.forEach((routeName) => {
+        handleLinkHover(routeName);
+      });
+    }, { timeout: 2000 });
+  } else {
+    // Fallback for browsers without requestIdleCallback
     setTimeout(() => {
-      handleLinkHover(routeName);
-    }, 2000); // Prefetch after 2 seconds
-  });
+      const criticalRoutes = ['about', 'initiatives', 'contact'];
+      criticalRoutes.forEach((routeName) => {
+        handleLinkHover(routeName);
+      });
+    }, 2000);
+  }
 });
 </script>
 
@@ -69,7 +79,7 @@ onMounted(() => {
     <div class="grain-bg"></div>
     <header class="site-header">
       <RouterLink to="/" class="logo">
-        <img :src="logoSrc" alt="Community Development logo" class="logo-mark" loading="eager" fetchpriority="high" />
+        <img :src="logoSrc" alt="Community Development logo" class="logo-mark" loading="eager" fetchpriority="high" width="50" height="50" />
         <div class="logo-text">
           <span>NeoRural Development</span>
         </div>
@@ -115,7 +125,7 @@ onMounted(() => {
       <div class="footer-glass">
         <div class="footer-grid">
           <div class="footer-col footer-brand">
-            <img :src="logoSrc" alt="NeoRural Development logo" class="footer-logo" loading="lazy" />
+            <img :src="logoSrc" alt="NeoRural Development logo" class="footer-logo" loading="lazy" width="56" height="56" />
             <div class="footer-brand-text">
               <h3>NeoRural Development</h3>
               <p>Partners for rural transformation. Designing resilient, thriving villages with community-led innovation.</p>

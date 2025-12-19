@@ -6,8 +6,16 @@
       <p class="blog-detail-date">{{ formatDate(post.date) }}</p>
       <h1>{{ post.title }}</h1>
       
-      <div class="blog-hero-image" v-if="post.image">
-        <img :src="post.image" :alt="`${post.title} - Insights on community-led village transformation programs and sustainable rural development best practices`" />
+      <div class="blog-hero-image" v-if="post.image" style="aspect-ratio: 16/9; overflow: hidden;">
+        <img 
+          :src="post.image" 
+          :alt="`${post.title} - Insights on community-led village transformation programs and sustainable rural development best practices`"
+          width="1200"
+          height="675"
+          loading="eager"
+          fetchpriority="high"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+        />
         <figcaption v-if="post.imageCaption" class="blog-image-caption">{{ post.imageCaption }}</figcaption>
       </div>
 

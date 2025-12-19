@@ -17,8 +17,16 @@
       </div>
     </div>
 
-    <div class="impact-panorama" ref="panoramaRef">
-      <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1400&q=80" alt="Measurable outcomes from community-led rural development programs showing village transformation through sustainable village development programs" />
+    <div class="impact-panorama" ref="panoramaRef" style="aspect-ratio: 16/9; overflow: hidden;">
+      <img 
+        src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1400&q=80" 
+        alt="Measurable outcomes from community-led rural development programs showing village transformation through sustainable village development programs"
+        width="1400"
+        height="788"
+        loading="lazy"
+        decoding="async"
+        style="width: 100%; height: 100%; object-fit: cover;"
+      />
       <div class="impact-panorama__overlay">
         <p>Live Earth observation + local data records</p>
         <span>Farmer scientists • Drone scans • Digital commons</span>

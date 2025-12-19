@@ -13,8 +13,16 @@
         :to="{ name: 'blog-detail', params: { slug: post.slug } }"
         class="blog-card"
       >
-        <div class="blog-card-image" v-if="post.image">
-          <img :src="post.image" :alt="`${post.title} - Insights on community-led village transformation programs and sustainable rural development`" />
+        <div class="blog-card-image" v-if="post.image" style="aspect-ratio: 16/9; overflow: hidden; background: rgba(255, 255, 255, 0.05);">
+          <img 
+            :src="post.image" 
+            :alt="`${post.title} - Insights on community-led village transformation programs and sustainable rural development`"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: 100%; object-fit: cover; display: block;"
+          />
         </div>
         <div class="blog-card-content">
           <p class="blog-date">{{ formatDate(post.date) }}</p>

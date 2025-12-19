@@ -11,6 +11,8 @@ const shouldAnimate = !prefersReducedMotion();
 gsap.config({
   nullTargetWarn: false,
   trialWarn: false,
+  autoSleep: 60, // Auto-sleep after 60 seconds of inactivity
+  force3D: 'auto', // Auto-detect 3D support
 });
 
 export const animateIn = (element, options = {}) => {

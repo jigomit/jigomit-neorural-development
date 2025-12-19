@@ -18,6 +18,9 @@ export default defineConfig({
       drop: ['console', 'debugger'],
       legalComments: 'none',
     },
+    // Performance: Optimize chunk sizes
+    cssMinify: true,
+    reportCompressedSize: false, // Faster builds
     rollupOptions: {
       output: {
         manualChunks: (id) => {

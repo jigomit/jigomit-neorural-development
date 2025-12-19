@@ -18,7 +18,15 @@
 
     <div class="stories-grid">
       <article v-for="story in stories" :key="story.title" class="story-card" ref="storyRefs">
-        <img :src="story.image" :alt="`${story.title} - Real-world example of sustainable village transformation through community-led rural development success stories from India`" />
+        <img 
+          :src="story.image" 
+          :alt="`${story.title} - Real-world example of sustainable village transformation through community-led rural development success stories from India`"
+          width="1200"
+          height="800"
+          loading="lazy"
+          decoding="async"
+          style="width: 100%; height: 240px; object-fit: cover; display: block;"
+        />
         <div class="story-card__body">
           <p class="eyebrow">{{ story.location }}</p>
           <h2>{{ story.title }}</h2>

@@ -10,7 +10,15 @@
     <div class="gallery-mosaic" ref="gridRef">
       <figure v-for="shot in shots" :key="shot.alt" class="mosaic-item">
         <div class="mosaic-frame">
-          <img :src="shot.src" :alt="shot.alt" />
+          <img 
+            :src="shot.src" 
+            :alt="shot.alt"
+            width="1600"
+            height="1000"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: 100%; object-fit: cover;"
+          />
         </div>
         <figcaption>
           <h4>{{ shot.alt }}</h4>
