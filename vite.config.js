@@ -36,8 +36,12 @@ export default defineConfig({
             if (id.includes('gsap')) {
               return 'vendor-gsap';
             }
-            if (id.includes('vue') || id.includes('vue-router')) {
-              return 'vendor-vue';
+            // Performance: Keep Vue core in main bundle for faster initial load
+            if (id.includes('vue') && !id.includes('vue-router')) {
+              return undefined; // Keep Vue in main bundle
+            }
+            if (id.includes('vue-router')) {
+              return 'vendor-router';
             }
             // Other node_modules
             return 'vendor-other';
@@ -64,6 +68,10 @@ export default defineConfig({
             const composableName = id.split('/composables/')[1].split('.')[0];
             if (composableName === 'useGsapAnimations') {
               return 'composables-gsap';
+            }
+            // Keep critical composables in main bundle
+            if (['useSEO', 'usePerformance'].includes(composableName)) {
+              return undefined;
             }
           }
           // Performance: Keep GSAP vendor separate and deferred

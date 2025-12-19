@@ -404,6 +404,15 @@ main {
 .hero-copy p {
   color: var(--muted);
   margin-bottom: 1.25rem;
+  /* Performance: Reserve exact space to prevent layout shift (0.201 CLS fix) */
+  min-height: 4.5em;
+  line-height: 1.6;
+  box-sizing: border-box;
+  /* Performance: Prevent font loading shifts */
+  font-display: swap;
+  /* Performance: Use content-visibility to prevent layout recalculation */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 4.5em;
 }
 
 .hero-actions {

@@ -5,7 +5,7 @@
       <div class="hero-copy" ref="copyRef">
         <p class="eyebrow">Community-led Rural Development</p>
         <h1 data-lcp-candidate>Community-led rural development initiatives for sustainable village transformation.</h1>
-        <p>
+        <p style="min-height: 4.5em; line-height: 1.6; box-sizing: border-box;">
           We orchestrate bold, community-led rural development initiatives for sustainable village transformation across infrastructure, livelihoods, and culture. Our participatory rural development approach empowers rural communities with water security solutions for rural communities, climate-resilient village infrastructure development programs, and sustainable agriculture development programs in rural villages.
         </p>
         <div class="hero-actions">
