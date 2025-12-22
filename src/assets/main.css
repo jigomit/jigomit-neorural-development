@@ -315,6 +315,11 @@ img {
   color: var(--accent);
   font-weight: 700;
   margin-bottom: 0.75rem;
+  /* Performance: Reserve space to prevent font loading shift */
+  min-height: 1.2em;
+  line-height: 1.2;
+  box-sizing: border-box;
+  display: block;
 }
 
 .page {
@@ -480,6 +485,13 @@ main {
 .hero-media {
   display: grid;
   gap: 1.5rem;
+  /* Performance: Reserve exact space to prevent layout shift (CLS fix) */
+  min-height: 650px;
+  box-sizing: border-box;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 650px;
+  /* Reserve space for transform animation without causing layout shift */
+  transform: translateZ(0);
 }
 
 .hero-insights {
@@ -488,12 +500,24 @@ main {
   background: linear-gradient(135deg, rgba(120, 243, 208, 0.15), rgba(5, 12, 22, 0.9));
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: var(--shadow);
+  /* Performance: Reserve exact space to prevent layout shift (CLS fix) */
+  min-height: 240px;
+  box-sizing: border-box;
+  /* Reserve space for content */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 240px;
+  /* Prevent layout shift during render */
+  transform: translateZ(0);
 }
 
 .hero-insights h3 {
   margin: 0 0 1rem;
   font-size: 1.5rem;
   font-family: 'Space Grotesk', sans-serif;
+  /* Performance: Reserve space to prevent font loading shift */
+  min-height: 1.5em;
+  line-height: 1.4;
+  box-sizing: border-box;
 }
 
 .hero-insights ul {
@@ -504,6 +528,19 @@ main {
   flex-direction: column;
   gap: 0.85rem;
   color: var(--muted);
+  /* Performance: Reserve space for list items to prevent layout shift */
+  min-height: 120px;
+  box-sizing: border-box;
+  /* Reserve space for each list item */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 120px;
+}
+
+.hero-insights li {
+  /* Performance: Reserve space for each list item */
+  min-height: 1.5em;
+  line-height: 1.5;
+  box-sizing: border-box;
 }
 
 .hero-insights li strong {
@@ -514,6 +551,11 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 400px;
+  box-sizing: border-box;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
 }
 
 .hero-photo-stack figure {
@@ -522,9 +564,24 @@ main {
   overflow: hidden;
   position: relative;
   background: rgba(255, 255, 255, 0.05);
-  /* Performance: Prevent layout shift */
+  /* Performance: Prevent layout shift - reserve exact space using aspect-ratio */
   aspect-ratio: 4 / 3;
-  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+  /* Reserve minimum space before image loads */
+  min-height: 200px;
+  /* Prevent layout shift during render */
+  transform: translateZ(0);
+}
+
+.hero-photo-stack figure img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .hero-photo-stack figcaption {

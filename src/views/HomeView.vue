@@ -31,7 +31,7 @@
           </ul>
         </div>
         <div class="hero-photo-stack">
-          <figure style="aspect-ratio: 4/3; overflow: hidden; border-radius: 24px;">
+          <figure>
             <img 
               src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80" 
               alt="Solar-powered irrigation systems for sustainable agriculture development programs in rural villages"
@@ -40,11 +40,10 @@
               fetchpriority="low"
               width="900"
               height="675"
-              style="width: 100%; height: 100%; object-fit: cover;"
             />
             <figcaption>Co-ops modernizing irrigation</figcaption>
           </figure>
-          <figure style="aspect-ratio: 4/3; overflow: hidden; border-radius: 24px;">
+          <figure>
             <img 
               src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=900&q=80" 
               alt="Community-led rural development initiatives through participatory rural development approach"
@@ -53,7 +52,6 @@
               fetchpriority="low"
               width="900"
               height="675"
-              style="width: 100%; height: 100%; object-fit: cover;"
             />
             <figcaption>Artisan-led innovation labs</figcaption>
           </figure>
@@ -78,7 +76,9 @@ const metrics = [
 ];
 
 onMounted(() => {
-  animateIn(copyRef.value, { y: 80 });
-  animateIn(mediaRef.value, { y: 80, delay: 0.2 });
+  // Performance: Use immediateRender: false to prevent layout shift
+  // CSS min-height ensures space is reserved, GSAP animates without shifting layout
+  animateIn(copyRef.value, { y: 80, immediateRender: false });
+  animateIn(mediaRef.value, { y: 80, delay: 0.2, immediateRender: false });
 });
 </script>
