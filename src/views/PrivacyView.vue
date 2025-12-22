@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="page privacy-shell">
     <div class="page-heading">
       <p class="eyebrow">Privacy</p>
       <h1>Privacy Policy</h1>
@@ -20,4 +20,30 @@
     </div>
   </section>
 </template>
+
+<style scoped>
+.privacy-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.rich-text h3 {
+  margin: 2rem 0 0.5rem;
+}
+
+.rich-text p {
+  margin: 0 0 0.75rem;
+  line-height: 1.7;
+}
+
+.rich-text a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.rich-text a:hover {
+  text-decoration: underline;
+}
+</style>
 
