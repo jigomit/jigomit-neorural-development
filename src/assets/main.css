@@ -201,6 +201,10 @@ img {
   overflow: hidden;
   /* Performance: Reserve exact space to prevent shift */
   contain: layout style;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1.2em;
+  /* Prevent layout shift during render */
+  transform: translateZ(0);
 }
 
 .nav-toggle {
@@ -359,6 +363,13 @@ main {
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Performance: Reserve space to prevent layout shift */
+  min-height: 48px;
+  min-width: 140px;
+  box-sizing: border-box;
+  /* Prevent font loading shift */
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .primary {
@@ -404,6 +415,12 @@ main {
   font-size: clamp(2.5rem, 5vw, 4rem);
   margin: 0 0 1rem;
   font-family: 'Space Grotesk', sans-serif;
+  /* Performance: Reserve space to prevent font loading shift */
+  min-height: 1.2em;
+  line-height: 1.2;
+  box-sizing: border-box;
+  /* Prevent layout shift during render */
+  transform: translateZ(0);
 }
 
 .hero-copy p {
@@ -425,6 +442,15 @@ main {
   gap: 1rem;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
+  /* Performance: Reserve space to prevent layout shift (CLS fix) */
+  /* Account for potential wrapping: 48px button height + 1rem gap = ~64px total */
+  min-height: 64px;
+  box-sizing: border-box;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 64px;
+  /* Prevent layout shift during render */
+  transform: translateZ(0);
+  align-items: flex-start;
 }
 
 .hero__logo-chip {
